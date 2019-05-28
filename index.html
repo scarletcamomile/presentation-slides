@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/reveal.css" />
+    <link rel="stylesheet" href="css/theme/black.css" />
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/monokai.css" />
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.type = "text/css";
+      link.href = window.location.search.match(/print-pdf/gi)
+        ? "css/print/pdf.css"
+        : "css/print/paper.css";
+      document.getElementsByTagName("head")[0].appendChild(link);
+    </script>
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1>An overview of V8</h1>
+        </section>
+
+        <section>
+          <section>
+            <dl>
+              <dt>JavaScript engine</dt>
+              <br />
+              <dd class="fragment">
+                - a program or an interpreter which executes JavaScript code
+              </dd>
+            </dl>
+          </section>
+          <section>
+            <ul>
+              <li class="fragment">Rhino</li>
+              <li class="fragment">SpiderMonkey</li>
+              <li class="fragment">JavaScriptCore</li>
+              <li class="fragment">Chakra (JScript9)</li>
+              <li class="fragment">Chakra (JavaScript)</li>
+              <li class="fragment">V8</li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <img src="1.png" alt="" />
+          </section>
+          <section>
+            <dl>
+              <dt class="fragment">Memory Heap</dt>
+              <dd class="fragment">- where the memory allocation happens</dd>
+              <br />
+              <dt class="fragment">Call Stack</dt>
+              <dd class="fragment">
+                - where your stack frames are as your code executes
+              </dd>
+            </dl>
+          </section>
+        </section>
+
+        <section>
+          <img src="2.png" alt="" />
+        </section>
+
+        <section>
+          <section>
+            <pre><code>
+	function multiply (x,y) {
+		return x*y;
+	}
+
+	function printSquare(x) {
+		const s = multiply(x,x);
+		console.log(s);
+	}
+
+	printSquare(5);
+					</code></pre>
+          </section>
+          <section>
+            <img src="3.png" alt="" />
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3>Blowing the stack</h3>
+            <pre><code>
+	function foo() {
+		foo();
+	}
+
+	foo();
+					</code></pre>
+          </section>
+          <section>
+            <img src="4.png" alt="" />
+            <img src="5.png" alt="" class="fragment" />
+          </section>
+        </section>
+
+        <section>
+          <p>
+            <span class="fragment">Call Stack has functions to execute =></span
+            ><span class="fragment"> the browser getting blocked</span>
+          </p>
+          <img class="fragment" src="6.png" alt="" />
+          <p>
+            <span class="fragment">Solution? </span
+            ><span class="fragment"> Asynchronous callbacks</span>
+          </p>
+        </section>
+      </div>
+    </div>
+
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        dependencies: [
+          {
+            src: "plugin/markdown/marked.js"
+          },
+          {
+            src: "plugin/markdown/markdown.js"
+          },
+          {
+            src: "plugin/notes/notes.js",
+            async: true
+          },
+          {
+            src: "plugin/highlight/highlight.js",
+            async: true
+          }
+        ]
+      });
+    </script>
+  </body>
+</html>
